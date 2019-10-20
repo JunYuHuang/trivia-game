@@ -1,51 +1,40 @@
-// initiate opentriviadb
-const opentriviadb = new OpenTriviaDB();
+// query selectors and global variables
+const app = document.querySelector("#app");
+const questionsContainer = document.querySelector("#questions-container");
+const answersContainer = document.querySelector("#answers-container");
+const radioButtonAnswers = document.querySelector("#answers-container input");
 
-// initiate UI
-const ui = new UI();
+// load up initial HTML template
+app.innerHTML = `
+  <div class="row">
+    <h5 id="brand-text">🎮 Video Game Trivia</h5>
+  </div>
+  <div class="row" id="question-container"></div>
+  <div class="row" id="answer-container"></div>
+`;
 
-// display question and answers
-opentriviadb
-  .getTriviaItem()
-  .then(data => {
-    const question = data.triviaItem.results[0].question;
-    const correctAnswer = data.triviaItem.results[0].correct_answer;
-    const incorrectAnswers = data.triviaItem.results[0].incorrect_answers;
-    const answers = [...incorrectAnswers, correctAnswer];
+// start initial game
 
-    const shuffledAnswers = shuffle(answers);
+// function for generating 1 trivia set
+// get API data, create UI elements that display q+a, reset values
 
-    ui.showQuestion(question);
-    ui.showAnswers(shuffledAnswers);
-
-    // for (i = 0; i < answers.length; i++) {
-    //   ui.answersContainer.children.item(i).addEventListener("click", e => {
-    //     checkUsersAnswer(e, correctAnswer);
-    //   });
-    // }
-  })
-  .catch(error => console.log(error));
-
-const checkUsersAnswer = (e, correctAnswer) => {
-  console.log(e.target.innerText === correctAnswer);
-
-  if (e.target.innerText === correctAnswer) {
-    e.target.classList.add("answer-item-correct");
-  }
-
-  let userHasAnswered = false;
-  if (e.target.innerText !== null) {
-    userHasAnswered = true;
-    // disable all other buttons
-  }
-};
-
-function shuffle(a) {
-  var clone = a.slice(0);
-  for (let i = clone.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [clone[i], clone[j]] = [clone[j], clone[i]];
-  }
-
-  return clone;
+// get API data
+async function getAPIData(question_count, question_category, question_type) {
+  const apiResponse = await fetch(
+    `https://opentdb.com/api.php?amount=${question_count}&category=${question_category}&type=${question_type}`
+  );
+  const data = await apiResponse.json();
+  return data.results[0];
 }
+
+// create input element and event handler for each answer
+
+// display trivia question and answer inputs in UI
+
+// shuffle order of answers
+
+// enable all answer inputs
+
+// disable all answer inputs
+
+// display results

@@ -9,7 +9,7 @@
     />
     <meta
       name="keywords"
-      content="web,front-end,full-stack,application,html,css,js,javascript,api,mobile,rwd,responsive"
+      content="web,front-end,application,html,css,js,javascript,api,mobile,rwd,responsive"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -22,14 +22,12 @@
     <title>Video Trivia Game</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="app">
       <div class="row">
-        <div class="twelve columns">
-          <h5 id="brand-text">🎮 Video Game Trivia</h5>
-        </div>
+        <h5 id="brand-text">🎮 Video Game Trivia</h5>
       </div>
       <div class="row" id="question-container"></div>
-      <div id="answer-container"></div>
+      <div class="row" id="answer-container"></div>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -37,8 +35,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="opentriviadb.js"></script>
-    <script src="ui.js"></script>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="backup.js"></script>
   </body>
 </html>
