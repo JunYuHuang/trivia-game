@@ -27,7 +27,7 @@
   background-color: rgb(61, 61, 61);
   color: white;
   border: solid 0.1rem rgb(61, 61, 61);
-  transition: 0.3s;
+  transition: 0.2s;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1.3rem;
@@ -70,7 +70,7 @@
 }
 
 .answer-item-not-selected {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .answer-item-not-selected:hover {
@@ -80,7 +80,16 @@
   cursor: default;
 }
 
+.disabledElement {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 @media only screen and (max-width: 700px) {
+  #logo-brand-desktop {
+    display: none;
+  }
+
   #question-container {
     padding-top: 1vh;
     padding-bottom: 1vh;

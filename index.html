@@ -23,11 +23,16 @@
   </head>
   <body>
     <div class="container" id="app">
-      <div class="row">
-        <h5 id="brand-text">🎮 Video Game Trivia</h5>
+      <div class="row" id="navbar">
+        <h5 class="six columns" id="brand-text">
+          🎮 <span id="logo-brand-desktop">Video Game </span>Trivia
+        </h5>
+        <button id="button-next-question" class="u-pull-right five columns">
+          Next Question
+        </button>
       </div>
       <div class="row" id="question-container"></div>
-      <div class="row" id="answer-container"></div>
+      <div class="row" id="answers-container"></div>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -36,6 +41,6 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="app.js"></script> -->
-    <script src="backup.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
