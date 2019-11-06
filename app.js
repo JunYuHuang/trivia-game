@@ -49,7 +49,7 @@ function generateTriviaSetUI(question, answers) {
   answers.forEach(answer => {
     answersContainer.insertAdjacentHTML(
       "beforeend",
-      `<div class="row answer-item"> ${answer}</div>`
+      `<div class="row answer-item" data-answer="${answer}"> ${answer}</div>`
     );
   });
 
@@ -68,7 +68,7 @@ function generateTriviaSetUI(question, answers) {
           item.classList.add("answer-item-not-selected");
         }
         // set the correct answer's background to green and prepend it with a checkmark
-        if (item.innerText === correctAnswer) {
+        if (item.getAttribute("data-answer") === correctAnswer) {
           item.classList.add("answer-item-correct");
           item.insertAdjacentHTML("afterbegin", "&#x2714; ");
         } else {
