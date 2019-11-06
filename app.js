@@ -9,6 +9,7 @@ let answers = [];
 
 buttonNextQuestion.addEventListener("click", () => {
   startNewGame();
+  buttonNextQuestion.disabled = true;
 });
 
 // start initial game
@@ -82,6 +83,8 @@ function generateTriviaSetUI(question, answers) {
         item.classList.add("disabledElement");
       });
     }
+    // re-enable next-question button
+    buttonNextQuestion.disabled = false;
   });
 }
 
