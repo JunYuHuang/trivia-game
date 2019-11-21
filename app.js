@@ -3,13 +3,14 @@ const questionContainer = document.querySelector("#question-container");
 const answersContainer = document.querySelector("#answers-container");
 const buttonNextQuestion = document.querySelector("#button-next-question");
 let question = "";
-let correctAnswer = "";
+let correctAnswer = ``;
 let incorrectAnswers = [];
 let answers = [];
+let isAnswered = false;
 
 buttonNextQuestion.addEventListener("click", () => {
   startNewGame();
-  buttonNextQuestion.disabled = true;
+  // toggleNextQuestionButton();
 });
 
 // start initial game
@@ -42,15 +43,27 @@ async function getAPIData(
   return data.results[0];
 }
 
+// toggle next question button visibility
+function toggleNextQuestionButton() {
+  if (isAnswered) {
+    buttonNextQuestion.style.display = "none";
+  } else {
+    buttonNextQuestion.style.display = "block";
+  }
+  isAnswered = !isAnswered;
+  console.log("test");
+}
+
 // display 1 trivia set
 function generateTriviaSetUI(question, answers) {
   questionContainer.insertAdjacentHTML("beforeend", `<h4>${question}</h4>`);
 
   answers.forEach(answer => {
-    answersContainer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="row answer-item" data-answer="${answer}"> ${answer}</div>`
-    );
+    let divAnswer = document.createElement("div");
+    divAnswer.classList.add("row", "answer-item");
+    answersContainer.appendChild(divAnswer);
+    divAnswer.insertAdjacentHTML("beforeend", `${answer}`);
+    divAnswer.dataset.answer = `${answer}`;
   });
 
   const answerItems = document.querySelectorAll(
@@ -85,6 +98,7 @@ function generateTriviaSetUI(question, answers) {
     }
     // re-enable next-question button
     buttonNextQuestion.disabled = false;
+    toggleNextQuestionButton();
   });
 }
 
