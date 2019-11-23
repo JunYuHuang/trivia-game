@@ -1,2 +1,4 @@
 # trivia-game
-Simple HTML + CSS + JS web game that returns random trivia questions.
+
+Simple vanilla JS web game that asks multiple choice, video game trivia questions that are pulled from an external API.
+App is live here: https://junyuhuang.github.io/trivia-game/

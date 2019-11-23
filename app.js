@@ -10,13 +10,15 @@ let isAnswered = false;
 
 buttonNextQuestion.addEventListener("click", () => {
   startNewGame();
-  // toggleNextQuestionButton();
 });
+
+disableNextQuestionButton();
 
 // start initial game
 startNewGame();
 
 function startNewGame() {
+  disableNextQuestionButton();
   resetTriviaSetUI();
   getAPIData()
     .then(data => {
@@ -24,7 +26,6 @@ function startNewGame() {
       correctAnswer = data.correct_answer;
       incorrectAnswers = data.incorrect_answers;
       answers = shuffle([...incorrectAnswers, correctAnswer]);
-
       generateTriviaSetUI(question, answers);
     })
     .catch(error => console.log(error));
@@ -60,10 +61,10 @@ function generateTriviaSetUI(question, answers) {
 
   answers.forEach(answer => {
     let divAnswer = document.createElement("div");
+    divAnswer.innerHTML = `${answer}`;
     divAnswer.classList.add("row", "answer-item");
-    answersContainer.appendChild(divAnswer);
-    divAnswer.insertAdjacentHTML("beforeend", `${answer}`);
     divAnswer.dataset.answer = `${answer}`;
+    answersContainer.append(divAnswer);
   });
 
   const answerItems = document.querySelectorAll(
@@ -97,9 +98,18 @@ function generateTriviaSetUI(question, answers) {
       });
     }
     // re-enable next-question button
-    buttonNextQuestion.disabled = false;
-    toggleNextQuestionButton();
+    enableNextQuestionButton();
   });
+}
+
+function enableNextQuestionButton() {
+  buttonNextQuestion.style.display = "inline-block";
+  buttonNextQuestion.disabled = false;
+}
+
+function disableNextQuestionButton() {
+  buttonNextQuestion.style.display = "none";
+  buttonNextQuestion.disabled = true;
 }
 
 // reset app ui; delete all child elements under the question and answers divs
